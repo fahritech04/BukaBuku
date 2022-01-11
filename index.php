@@ -22,7 +22,7 @@
   <h1 class="py-4 bg-dark text-light rounded"><i class="fas fa-swatchbook"></i>BukaBuku</h1>
 
    <div class="d-flex justify-content-center">
-    <form action="" method="POST" class="w-50">
+    <form action="simpan.php" method="POST" class="w-50">
 
         <div class="pt-2">
           <label for="">ID Buku</label>
@@ -48,16 +48,11 @@
           </div>
         </div>
 
-        <div class="justify-content-center pt-5 mb-3">
+        <div class="justify-content-center pt-3 mb-3">
           <div class="row pt-2 mb-3">
             <div class="col">
               <a href="index.php" class="btn btn-info">Batal</a>
-              <input type="submit" value="create" class="btn btn-primary">
-            </div>
-            <div class="col">
-              <input type="submit" value="update" class="btn btn-success">
-              <input type="submit" value="delete" class="btn btn-danger">
-              <input type="submit" value="read" class="btn btn-warning">
+              <input type="submit" value="simpan" class="btn btn-primary">
             </div>
           </div>
         </div>
