@@ -26,30 +26,40 @@
 
         <div class="pt-2">
           <label for="">ID Buku</label>
-          <input type="number" name="book_id" class="form-control" <i class="fas fa-id-badge"></i>>
+          <i class="fas fa-id-badge"></i>
+          <input type="number" name="book_id" class="form-control fas">
         </div>
         <div class="pt-2">
           <label for="">Book Name</label>
-          <input type="text" name="book_name" class="form-control" <i class="fas fa-book"></i>>
+          <i class="fas fa-book"></i>
+          <input type="text" name="book_name" class="form-control" >
         </div>
 
         <div class="row pt-2">
           <div class="col">
             <label for="">Penerbit</label>
-            <input type="text" name="book_publisher" class="form-control" <i class="fas fa-people-carry"></i>>
+            <i class="fas fa-people-carry"></i>
+            <input type="text" name="book_publisher" class="form-control">
           </div>
           <div class="col">
             <label for="">Harga</label>
-            <input type="text" name="book_price" class="form-control" <i class="fas fa-dollar-sign"></i>>
+            <i class="fas fa-dollar-sign"></i>
+            <input type="text" name="book_price" class="form-control">
           </div>
         </div>
 
-        <div class="d-flex justify-content-center">
-            <?php buttonElement("btn-create","btn btn-success","<i class='fas fa-plus'></i>","create","data-toggle='tooltip' data-placement='bottom' title='Create'"); ?>
-            <?php buttonElement("btn-read","btn btn-primary","<i class='fas fa-sync'></i>","read","data-toggle='tooltip' data-placement='bottom' title='Read'"); ?>
-            <?php buttonElement("btn-update","btn btn-light border","<i class='fas fa-pen-alt'></i>","update","data-toggle='tooltip' data-placement='bottom' title='Update'"); ?>
-            <?php buttonElement("btn-delete","btn btn-danger","<i class='fas fa-trash-alt'></i>","delete","data-toggle='tooltip' data-placement='bottom' title='Delete'"); ?>
-            <?php deleteBtn();?>
+        <div class="d-flex justify-content-center pt-5 mb-3">
+          <div class="row pt-2">
+            <div class="col">
+              <a href="index.php" class="btn btn-info">Batal</a>
+              <input type="submit" value="create" class="btn btn-primary">
+              <input type="submit" value="read" class="btn btn-warning">
+            </div>
+            <div class="col">
+              <input type="submit" value="update" class="btn btn-success">
+              <input type="submit" value="delete" class="btn btn-danger">
+            </div>
+          </div>
         </div>
 
     </form>
