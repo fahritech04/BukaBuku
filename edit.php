@@ -15,33 +15,38 @@
  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <?php
+     include "./config.php";
+
+     $query  = mysqli_query($koneksi, "SELECT * FROM books WHERE id='$_GET[id]'");
+     $data   = mysqli_fetch_object($query);
+  ?>
 
  <main>
-
+    
  <div class="container text-center">
-  <h1 class="py-4 bg-dark text-light rounded"><i class="fas fa-swatchbook" style="color: #fca311;"></i>BukaBuku</h1>
+  <h1 class="py-4 bg-dark text-light rounded"><i class="fas fa-swatchbook" style="color: #fca311;"></i>Edit BukaBuku</h1>
 
   <!-- Input Buku -->
    <div class="d-flex justify-content-center">
-    <form action="simpan.php" method="POST" class="w-50">
-
-
+    <form action="update.php" method="POST" class="w-50">
+    <input type="hidden" name="id" value="<?=$data->id ?>">
         <div class="pt-2">
           <label for="">Book Name</label>
           <i class="fas fa-book"></i>
-          <input type="text" name="book_name" class="form-control">
+          <input type="text" name="book_name" class="form-control" value="<?=$data->book_name?>">
         </div>
 
         <div class="row pt-2">
           <div class="col">
             <label for="">Penerbit</label>
             <i class="fas fa-people-carry"></i>
-            <input type="text" name="book_publisher" class="form-control">
+            <input type="text" name="book_publisher" class="form-control" value="<?=$data->book_publisher?>">
           </div>
           <div class="col">
             <label for="">Harga</label>
             <i class="fas fa-dollar-sign"></i>
-            <input type="text" name="book_price" class="form-control">
+            <input type="text" name="book_price" class="form-control" value="<?=$data->book_price?>">
           </div>
         </div>
 
@@ -58,62 +63,8 @@
    </div>
   <!-- end Input Buku -->
 
-  <!-- Bootstrap table -->
-  <div class="d-flex justify-content-center">
-      <div class="pt-2 mb-4">
-        <label for="">Searching</label>
-        <i class="fas fa-search"></i>
-        <input type="text" name="search" class="form-control">
-      </div>
-  </div>
-  
-  <div class="d-flex table-data">
-    <?php
-    
-      include "./config.php";
-
-      $query = mysqli_query($koneksi, 'SELECT * FROM books')?>
-
-
-      <table class="table table-striped table-dark">
-        <thead class="thead-dark">
-          <tr>
-            <th>ID</th>
-            <th>Book Name</th>
-            <th>Publisher</th>
-            <th>Book Price</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <?php $no=1; while($data = mysqli_fetch_array($query)){ ?>          
-          <tbody id="tbody">
-            <tr>
-              <td><?= $no++ ?></td>
-              <td><?= $data['book_name'] ?></td>
-              <td><?= $data['book_publisher'] ?></td>
-              <td><?= $data['book_price'] ?></td>
-              <td>
-                <div class="btn-group">
-                  <a href="edit.php?id=<?=$data["id"]?>" class="btn btn-success">Edit</a>
-                  <a href='delete.php?id=<?=$data['id']?>' class="btn btn-danger">Delete</a>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        <?php
-        }?>
-      </table>
-      
-
-      
-
-  </div>
-
  </div>
  </main>
- <!-- end table -->
-
-
  
 
  <!-- Js Bootstrap -->
