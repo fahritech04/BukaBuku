@@ -66,6 +66,7 @@
    </div>
 
    <!-- Bootstrap table -->
+
    <div class="d-flex table-data">
       <table class="table table-striped table-dark">
         <thead class="thead-dark">
@@ -78,24 +79,10 @@
           </tr>
         </thead>
         <tbody id="tbody">
-            <?php
-              if(isset($_POST['read'])){
-                $result = getData();
-
-                if($result){
-                  while($row = mysqli_fetch_assoc($result)){ ?>
-                    <tr>
-                        <td data-id="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></td>
-                        <td data-id="<?php echo $row['id']; ?>"><?php echo $row['book_name']; ?></td>
-                        <td data-id="<?php echo $row['id']; ?>"><?php echo $row['book_publisher']; ?></td>
-                        <td data-id="<?php echo $row['id']; ?>"><?php echo '$' . $row['book_price']; ?></td>
-                        <td ><i class="fas fa-edit btnedit" data-id="<?php echo $row['id']; ?>"></i></td>
-                    </tr>
-            <?php
-                  }
-                }
-              }
-            ?>
+            <td<?= ></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tbody>
       </table>
    </div>
