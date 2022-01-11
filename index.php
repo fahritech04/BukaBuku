@@ -48,16 +48,16 @@
           </div>
         </div>
 
-        <div class="d-flex justify-content-center pt-5 mb-3">
-          <div class="row pt-2">
+        <div class="justify-content-center pt-5 mb-3">
+          <div class="row pt-2 mb-3">
             <div class="col">
               <a href="index.php" class="btn btn-info">Batal</a>
               <input type="submit" value="create" class="btn btn-primary">
-              <input type="submit" value="read" class="btn btn-warning">
             </div>
             <div class="col">
               <input type="submit" value="update" class="btn btn-success">
               <input type="submit" value="delete" class="btn btn-danger">
+              <input type="submit" value="read" class="btn btn-warning">
             </div>
           </div>
         </div>
@@ -67,7 +67,12 @@
 
    <!-- Bootstrap table -->
 
-   <div class="d-flex table-data">
+  <div class="d-flex table-data">
+    <?php
+    
+      include "./config.php";
+
+      $query = mysqli_query($koneksi, 'SELECT * FROM books')?>
       <table class="table table-striped table-dark">
         <thead class="thead-dark">
           <tr>
@@ -78,14 +83,25 @@
             <th>Edit</th>
           </tr>
         </thead>
-        <tbody id="tbody">
-            <td<?= ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tbody>
+        <?php $no=1; while($data = mysqli_fetch_array($query)){ ?>
+          <tbody id="tbody">
+            <tr>
+              <td><?= $no++ ?></td>
+              <td><?= $data['book_name'] ?></td>
+              <td><?= $data['book_publisher'] ?></td>
+              <td><?= $data['book_price'] ?></td>
+              <td>
+                <div class="btn-group">
+                  <a href="edit.php?id=<?=$data["id"]?>" class="btn btn-success">Edit</a>
+                  <a href='delete.php?id=<?=$data['id']?>' class="btn btn-danger">Delete</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        <?php
+        }?>
       </table>
-   </div>
+  </div>
 
  </div>
  </main>
