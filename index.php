@@ -58,22 +58,17 @@
    </div>
   <!-- end Input Buku -->
 
-  <!-- Bootstrap table -->
-  <div class="d-flex justify-content-center">
-      <div class="pt-2 mb-4">
-        <label for="">Searching</label>
-        <i class="fas fa-search"></i>
-        <input type="text" name="search" class="form-control">
-      </div>
-  </div>
-  
+  <!-- Bootstrap table -->  
   <div class="d-flex table-data">
     <?php
     
       include "./config.php";
 
-      $query = mysqli_query($koneksi, 'SELECT * FROM books')?>
+      $query = mysqli_query($koneksi, 'SELECT * FROM books');
+      
+      $jumlah_buku = mysqli_num_rows($query);
 
+      ?>      
 
       <table class="table table-striped table-dark">
         <thead class="thead-dark">
@@ -85,7 +80,23 @@
             <th>Edit</th>
           </tr>
         </thead>
-        <?php $no=1; while($data = mysqli_fetch_array($query)){ ?>          
+        <?php $no=1;
+        
+        $batas   = 5;
+        $halaman = @$_GET['halaman'];
+            if(empty($halaman)){
+                $posisi  = 0;
+                $halaman = 1;
+            }
+            else{
+                $posisi  = ($halaman-1) * $batas;
+            }
+
+        $no = $posisi+1;
+        $sql="select * from books limit $posisi,$batas";
+        $hasil=mysqli_query($koneksi,$sql);
+
+        while($data = mysqli_fetch_array($hasil)){ ?>          
           <tbody id="tbody">
             <tr>
               <td><?= $no++ ?></td>
@@ -102,21 +113,35 @@
           </tbody>
         <?php
         }?>
-      </table>
-      
-
-      
-
+      </table>     
   </div>
+  <!-- end table -->
+
+  <p>Jumlah data buku : <b><?php echo $jumlah_buku; ?></b></p>
+
+  <!-- Pagination -->
+  <?php
+
+    $jmldata    = mysqli_num_rows($query);
+    $jmlhalaman = ceil($jmldata/$batas);
+    ?>
+    <div class="text-center">
+        <ul class="pagination">
+            <?php
+            for($i=1;$i<=$jmlhalaman;$i++) {
+                if ($i != $halaman) {
+                    echo "<li class='page-item'><a class='page-link' href='index.php?halaman=$i'>$i</a></li>";
+                } else {
+                    echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
+                }
+            }
+            ?>
+        </ul>
+    </div>
+    <!-- end pagination -->
 
  </div>
  </main>
- <!-- end table -->
-
-
  
-
- <!-- Js Bootstrap -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
